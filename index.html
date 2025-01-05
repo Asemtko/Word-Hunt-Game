@@ -2,10 +2,90 @@
 <html>
     <head>
         <title>Word Hunt</title>
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
     </head>
     <body>
+         <h1 class="h1">Word Hunt Game</h1>
+        <div class="wrapper">
+            <div class="menu-wrapper">
+                <h2 class="h2">Menu</h2>
+                <div class="flex-container">
+                    <div class="choice-sec">
+                        <h3>Puzzles</h3>
+                        <div class="button-container">
+                            <button class="category-btn" onclick="fruitf()">Fruits</button>
+                            <button class="category-btn" onclick="clothf()">Clothes</button>
+                            <button class="category-btn" onclick="countryf()">Countries</button>
+                            <button class="category-btn" onclick="cityf()">Cities</button>
+                            <button class="category-btn" onclick="animalf()">Animals</button>
+                            <button class="category-btn" onclick="carf()">Cars</button>
+                            <button class="category-btn" onclick="sportsf()">Sports</button>
+                            <button class="category-btn" onclick="foodf()">Food</button>
+                            <button class="category-btn" onclick="jobsf()">Jobs</button>
+                            <button class="category-btn" onclick="colorsf()">Colors</button>
+                            <button class="category-btn" onclick="mixedf()">Mixed</button>
+                            <button class="green play-btn" onclick="start()">Play</button>
+                        </div>
+                    </div>
+                    <div class="create-sec">
+                        <h3>Create Puzzle</h3>
+                        <div class="create-container">
+                            <div class="text-sec">
+                                <p>Enter your word list in the box.</p>
+                                <li>Leave space between words.</li>
+                                <li>Minimum word length: 3 letters.</li>
+                                <li>Maximum word length: 16 letters.</li>
+                                <li>Recommended number of words: 20.</li>
+                            </div>
+                            <div class="write-sec">
+                                <textarea id="textarea"></textarea>
+                                <button class="green submit" onclick="submit()">submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="play-wrapper">
+                <h2 class="h2">Puzzle</h2>
+
+                <div class="flex-container">
+                    <div class="word-sec">
+                        <div class="timer-container">
+                            <div class="time-section">
+                                <span class="timer-label">Time:</span>
+                                <span id="timer">0:00</span>
+                            </div>
+                            <div class="time-section">
+                                <span class="timer-label">Best:</span>
+                                <span id="fastest-time">--:--</span>
+                            </div>
+                        </div>
+                        <div class="words" id="word-list">
+                            <div id="words">Choose one of the puzzles or create your puzzle!</div>
+                        </div>
+                        <p>Find the written words on top!</p>
+                        <p>Words are hidden → and ↓ order!</p>
+                        
+                        <button class="restart" id="reset-button" onclick="restart()">Restart</button>
+                        <button class="solution blue" id="solution-button" onclick="solution()">Solutions</button>
+                    </div>
+                    <div class="play-sec grid" id="puzzle-grid">
+                        <table>
+                            <tbody id="tbody">
+                                <!-- Grid will be generated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <script src="index.js"></script>
+        <button class="reset-records" onclick="resetRecords()">Reset Records</button>
     </body>
     </html>
