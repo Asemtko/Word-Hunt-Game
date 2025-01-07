@@ -55,3 +55,24 @@ function placeWords(grid) {
        }
    }
 }
+function canPlaceWord(grid, word, row, col, direction) {
+   for (let i = 0; i < word.length; i++) {
+       const currentRow = direction === 'vertical' ? row + i : row;
+       const currentCol = direction === 'horizontal' ? col + i : col;
+       
+       if (grid[currentRow][currentCol] && grid[currentRow][currentCol] !== word[i]) {
+           return false;
+       }
+   }
+   return true;
+}
+ 
+function placeWordInGrid(grid, word, row, col, direction) {
+   for (let i = 0; i < word.length; i++) {
+       if (direction === 'horizontal') {
+           grid[row][col + i] = word[i];
+       } else {
+           grid[row + i][col] = word[i];
+       }
+   }
+}
