@@ -33,3 +33,25 @@ function adjustGridSize() {
        cell.style.fontSize = `${Math.max(cellSize * 0.4, 14)}px`; // Responsive font size
    });
 }
+function placeWords(grid) {
+   wordLocations.clear();
+   
+   for (let word of currentWords) {
+       let placed = false;
+       let attempts = 0;
+       const maxAttempts = 100;
+ 
+       while (!placed && attempts < maxAttempts) {
+           const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+           const row = Math.floor(Math.random() * (GRID_SIZE - (direction === 'vertical' ? word.length : 0)));
+           const col = Math.floor(Math.random() * (GRID_SIZE - (direction === 'horizontal' ? word.length : 0)));
+ 
+           if (canPlaceWord(grid, word, row, col, direction)) {
+               placeWordInGrid(grid, word, row, col, direction);
+               wordLocations.set(word, { row, col, direction });
+               placed = true;
+           }
+           attempts++;
+       }
+   }
+}
