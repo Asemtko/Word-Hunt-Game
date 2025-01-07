@@ -1,4 +1,105 @@
 const GRID_SIZE = 12;
+const fruits = ["APPLE", "BANANA", "ORANGE", "MANGO", "GRAPE", "PEAR", "PEACH", "PLUM", "KIWI", "LEMON", "CHERRY", "PAPAYA", "MELON", "BERRY", "FIG"];
+const clothes = ["SHIRT", "PANTS", "DRESS", "SKIRT", "JACKET", "SOCKS", "SHOES", "SCARF", "HAT", "COAT", "JEANS", "SWEATER", "HOODIE", "GLOVES", "BELT"];
+const countries = ["FRANCE", "SPAIN", "ITALY", "JAPAN", "BRAZIL", "CANADA", "INDIA", "CHINA", "EGYPT", "MEXICO", "RUSSIA", "GREECE", "KOREA", "PERU", "CHILE"];
+const cities = ["PARIS", "LONDON", "TOKYO", "ROME", "BERLIN", "MADRID", "DUBAI", "SEOUL", "MOSCOW", "SYDNEY", "VENICE", "ATHENS", "CAIRO", "MIAMI", "DELHI"];
+const animals = ["LION", "TIGER", "ELEPHANT", "GIRAFFE", "ZEBRA", "MONKEY", "BEAR", "WOLF", "DEER", "FOX", "PANDA", "KOALA", "EAGLE", "SNAKE", "WHALE"];
+const cars = ["TOYOTA", "HONDA", "FORD", "BMW", "AUDI", "TESLA", "VOLVO", "MAZDA", "LEXUS", "JEEP", "PORSCHE", "FERRARI", "BENZ", "KIA", "DODGE"];
+const sports = ["SOCCER", "TENNIS", "GOLF", "RUGBY", "BOXING", "HOCKEY", "SKIING", "CYCLING", "RUNNING", "SWIMMING", "KARATE", "JUDO", "POLO", "SURF", "YOGA"];
+const food = ["PIZZA", "PASTA", "SUSHI", "BURGER", "SALAD", "BREAD", "STEAK", "SOUP", "CURRY", "TACO", "RICE", "FISH", "CHIPS", "CAKE", "PIE"];
+const jobs = ["DOCTOR", "TEACHER", "LAWYER", "CHEF", "ARTIST", "PILOT", "NURSE", "WRITER", "ACTOR", "POLICE", "JUDGE", "BANKER", "DRIVER", "BAKER", "HOST"];
+const colors = ["BLACK", "WHITE", "PURPLE", "ORANGE", "YELLOW", "GREEN", "BROWN", "SILVER", "GOLDEN", "PINK", "BLUE", "RED", "GREY", "BEIGE", "NAVY"];
+const mixed = ["APPLE", "SHIRT", "PARIS", "LION", "TOYOTA", "SPAIN", "PIZZA", "DOCTOR", "BLACK", "SOCCER", "BEAR", "DRESS", "ROME", "GRAPE", "SURF"];
+
+
+let currentWords = [];
+let selectedCells = [];
+let foundWords = new Set();
+let wordLocations = new Map(); // Stores word positions for solution display
+let startTime;
+let timerInterval;
+let isTimerRunning = false;
+let fastestTime = localStorage.getItem('fastestTime') ? parseInt(localStorage.getItem('fastestTime')) : null;
+let currentCategory = '';
+
+// Category selection functions
+function fruitf() {
+    currentWords = fruits;
+    currentCategory = 'Fruits';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function clothf() {
+    currentWords = clothes;
+    currentCategory = 'Clothes';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function countryf() {
+    currentWords = countries;
+    currentCategory = 'Countries';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function cityf() {
+    currentWords = cities;
+    currentCategory = 'Cities';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function animalf() {
+    currentWords = animals;
+    currentCategory = 'Animals';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function carf() {
+    currentWords = cars;
+    currentCategory = 'Cars';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function mixedf() {
+    currentWords = mixed;
+    currentCategory = 'Mixed';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+// Add these new category functions
+function sportsf() {
+    currentWords = sports;
+    currentCategory = 'Sports';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function foodf() {
+    currentWords = food;
+    currentCategory = 'Food';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function jobsf() {
+    currentWords = jobs;
+    currentCategory = 'Jobs';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
+function colorsf() {
+    currentWords = colors;
+    currentCategory = 'Colors';
+    displayWords();
+    updateFastestTimeDisplay();
+}
+
  
 function generatePuzzle() {
    const tbody = document.getElementById('tbody');
