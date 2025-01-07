@@ -10,6 +10,7 @@ function generatePuzzle() {
    placeWords(grid);
  
 //for loop
+
  
 document.addEventListener('mouseup', endSelection);
    
@@ -75,4 +76,8 @@ function placeWordInGrid(grid, word, row, col, direction) {
            grid[row + i][col] = word[i];
        }
    }
+}
+
+function getRandomLetter() {
+    return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
