@@ -393,3 +393,19 @@ function updateFastestTimeDisplay() {
     }
 }
 
+function restart() {
+    foundWords.clear();
+    wordLocations.clear();
+    document.querySelectorAll('.word').forEach(span => span.classList.remove('found'));
+    document.querySelectorAll('td.found').forEach(cell => cell.classList.remove('found'));
+    
+    // Reset timer
+    startTime = Date.now();
+    isTimerRunning = true;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+    
+    if (currentWords.length > 0) {
+        generatePuzzle();
+    }
+}
