@@ -359,4 +359,27 @@ function formatTime(milliseconds) {
     const seconds = totalSeconds % 60;
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
+function puzzleCompleted() {
+    isTimerRunning = false;
+    clearInterval(timerInterval);
+    const endTime = Date.now();
+    const totalTime = endTime - startTime;
+    
+    // Check if this is the fastest time for the category
+    const categoryFastestTime = localStorage.getItem(`fastest_${currentCategory}`);
+    if (!categoryFastestTime || totalTime < parseInt(categoryFastestTime)) {
+        localStorage.setItem(`fastest_${currentCategory}`, totalTime.toString());
+        updateFastestTimeDisplay();
+        
+        // Show special message for new record
+        setTimeout(() => {
+            alert(`🎉 NEW RECORD! 🎉\nYou completed the ${currentCategory} puzzle in ${formatTime(totalTime)}!`);
+        }, 300);
+    } else {
+        // Show regular completion message
+        setTimeout(() => {
+            alert(`Congratulations! You completed the puzzle in ${formatTime(totalTime)}!\nBest time: ${formatTime(parseInt(categoryFastestTime))}`);
+        }, 300);
+    }
+}
 
