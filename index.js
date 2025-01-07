@@ -192,3 +192,9 @@ function placeWordInGrid(grid, word, row, col, direction) {
 function getRandomLetter() {
     return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
+
+function submit() {
+    const textarea = document.getElementById('textarea');
+    const words = textarea.value.toUpperCase().trim().split(/\s+/);
+    
+    }
