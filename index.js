@@ -307,3 +307,6 @@ function markWordAsFound(word) {
         }
     });
 }
+function highlightFoundWord() {
+    selectedCells.forEach(cell => cell.classList.add('found'));
+}
