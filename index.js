@@ -300,3 +300,10 @@ function highlightCellsBetween(cell1, cell2) {
     // Add the cells to selectedCells array
     selectedCells = cells;
 }
+function markWordAsFound(word) {
+    document.querySelectorAll('.word').forEach(span => {
+        if (span.textContent === word) {
+            span.classList.add('found');
+        }
+    });
+}
