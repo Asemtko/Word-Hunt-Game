@@ -329,4 +329,20 @@ function solution() {
         }
     });
 }
+function start() {
+    if (currentWords.length === 0) {
+        alert('Please select a category or create your own puzzle first!');
+        return;
+    }
+    
+    // Reset timer
+    startTime = Date.now();
+    isTimerRunning = true;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+    foundWords.clear();
+    
+    generatePuzzle();
+}
+
 
