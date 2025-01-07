@@ -293,4 +293,10 @@ function getSelectedWord() {
     
     return selectedCells.map(cell => cell.textContent).join('');
 }
-
+function highlightCellsBetween(cell1, cell2) {
+    clearSelection();
+    const cells = getAllCellsBetween(cell1, cell2);
+    cells.forEach(cell => cell.classList.add('selecting'));
+    // Add the cells to selectedCells array
+    selectedCells = cells;
+}
