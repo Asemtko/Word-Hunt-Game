@@ -288,4 +288,9 @@ function getAllCellsBetween(cell1, cell2) {
     }
     return cells;
 }
+function getSelectedWord() {
+    if (selectedCells.length < 2) return '';
+    
+    return selectedCells.map(cell => cell.textContent).join('');
+}
 
