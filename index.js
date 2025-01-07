@@ -382,4 +382,14 @@ function puzzleCompleted() {
         }, 300);
     }
 }
+function updateFastestTimeDisplay() {
+    const fastestTimeElement = document.getElementById('fastest-time');
+    const categoryFastestTime = localStorage.getItem(`fastest_${currentCategory}`);
+    
+    if (categoryFastestTime) {
+        fastestTimeElement.textContent = formatTime(parseInt(categoryFastestTime));
+    } else {
+        fastestTimeElement.textContent = '--:--';
+    }
+}
 
