@@ -310,3 +310,23 @@ function markWordAsFound(word) {
 function highlightFoundWord() {
     selectedCells.forEach(cell => cell.classList.add('found'));
 }
+
+function solution() {
+    clearSelection();
+    isTimerRunning = false;
+    clearInterval(timerInterval);
+    
+    wordLocations.forEach((location, word) => {
+        if (!foundWords.has(word)) {
+            const { row, col, direction } = location;
+            const startCell = document.querySelector(`td[data-row="${row}"][data-col="${col}"]`);
+            const endRow = direction === 'vertical' ? row + word.length - 1 : row;
+            const endCol = direction === 'horizontal' ? col + word.length - 1 : col;
+            const endCell = document.querySelector(`td[data-row="${endRow}"][data-col="${endCol}"]`);
+            
+            const cells = getAllCellsBetween(startCell, endCell);
+            cells.forEach(cell => cell.classList.add('found'));
+        }
+    });
+}
+
