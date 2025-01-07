@@ -212,4 +212,80 @@ function displayWords() {
     const wordList = document.getElementById('words');
     wordList.innerHTML = currentWords.map(word => `<span class="word">${word}</span>`).join(' ');
 }
+// Word selection functionality
+function startSelection(e) {
+    selectedCells = [e.target];
+    e.target.classList.add('selecting');
+}
+
+function updateSelection(e) {
+    if (selectedCells.length === 0) return;
+    
+    const firstCell = selectedCells[0];
+    const currentCell = e.target;
+    
+    // Check if selection is valid (same row or column)
+    if (firstCell.dataset.row === currentCell.dataset.row || 
+        firstCell.dataset.col === currentCell.dataset.col) {
+        // Keep the first cell and update the end cell
+        selectedCells = [firstCell];
+        highlightCellsBetween(firstCell, currentCell);
+    }
+}
+
+function endSelection() {
+    const word = getSelectedWord();
+    if (currentWords.includes(word)) {
+        if (!foundWords.has(word)) {
+            foundWords.add(word);
+            markWordAsFound(word);
+            highlightFoundWord();
+            
+            // Check if puzzle is completed
+            if (foundWords.size === currentWords.length) {
+                puzzleCompleted();
+            }
+        }
+    }
+    clearSelection();
+}
+function clearSelection() {
+    document.querySelectorAll('td.selecting').forEach(cell => {
+        cell.classList.remove('selecting');
+    });
+    selectedCells = [];
+}
+
+function highlightCellsBetween(cell1, cell2) {
+    clearSelection();
+    const cells = getAllCellsBetween(cell1, cell2);
+    cells.forEach(cell => cell.classList.add('selecting'));
+    // Add the cells to selectedCells array
+    selectedCells = cells;
+}
+
+function getAllCellsBetween(cell1, cell2) {
+    const row1 = parseInt(cell1.dataset.row);
+    const col1 = parseInt(cell1.dataset.col);
+    const row2 = parseInt(cell2.dataset.row);
+    const col2 = parseInt(cell2.dataset.col);
+    
+    const cells = [];
+    if (row1 === row2) {
+        // Horizontal selection
+        const start = Math.min(col1, col2);
+        const end = Math.max(col1, col2);
+        for (let col = start; col <= end; col++) {
+            cells.push(document.querySelector(`td[data-row="${row1}"][data-col="${col}"]`));
+        }
+    } else if (col1 === col2) {
+        // Vertical selection
+        const start = Math.min(row1, row2);
+        const end = Math.max(row1, row2);
+        for (let row = start; row <= end; row++) {
+            cells.push(document.querySelector(`td[data-row="${row}"][data-col="${col1}"]`));
+        }
+    }
+    return cells;
+}
 
