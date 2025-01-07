@@ -198,3 +198,18 @@ function submit() {
     const words = textarea.value.toUpperCase().trim().split(/\s+/);
     
     }
+
+ const validWords = words.filter(word => word.length >= 3 && word.length <= 16);
+    if (validWords.length > 0) {
+        currentWords = validWords;
+   
+    } else {
+        alert('Please enter valid words (3-16 letters)');
+    }
+
+// Display words in the word list
+function displayWords() {
+    const wordList = document.getElementById('words');
+    wordList.innerHTML = currentWords.map(word => `<span class="word">${word}</span>`).join(' ');
+}
+
