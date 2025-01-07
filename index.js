@@ -345,4 +345,18 @@ function start() {
     generatePuzzle();
 }
 
+function updateTimerDisplay() {
+    if (!startTime || !isTimerRunning) return;
+    const currentTime = Date.now();
+    const elapsedTime = currentTime - startTime;
+    document.getElementById('timer').textContent = formatTime(elapsedTime);
+}
+
+// Add this function to format time
+function formatTime(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
 
