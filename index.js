@@ -10,7 +10,17 @@ function generatePuzzle() {
    placeWords(grid);
  
 //for loop
-
+  for (let i = 0; i < GRID_SIZE; i++) {
+        for (let j = 0; j < GRID_SIZE; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = grid[i][j] || getRandomLetter();
+            cell.dataset.row = i;
+            cell.dataset.col = j;
+            cell.addEventListener('mousedown', startSelection);
+            cell.addEventListener('mouseover', updateSelection);
+            cell.addEventListener('mouseup', endSelection);
+            tbody.appendChild(cell);
+        }
  
 document.addEventListener('mouseup', endSelection);
    
