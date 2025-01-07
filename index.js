@@ -409,3 +409,15 @@ function restart() {
         generatePuzzle();
     }
 }
+
+function resetRecords() {
+    if (confirm('Are you sure you want to reset all time records?')) {
+        const categories = ['Fruits', 'Clothes', 'Countries', 'Cities', 'Animals', 
+                          'Cars', 'Sports', 'Food', 'Jobs', 'Colors', 'Mixed'];
+        categories.forEach(category => {
+            localStorage.removeItem(`fastest_${category}`);
+        });
+        updateFastestTimeDisplay();
+        alert('All records have been reset!');
+    }
+}
